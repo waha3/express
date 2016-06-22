@@ -1,0 +1,134 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: teal;
+  display: flex;
+  flex-direction: row-reverse;
+}
+header button {
+  width: 50px;
+  height: 30px;
+  border: none;
+  align-self: center;
+  margin-right: 10px;
+  background: #333;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.25), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+}
+header button a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+}
+.container {
+  width: 1000px;
+  height: auto;
+  margin: auto;
+}
+.container .main {
+  width: 100%;
+  height: auto;
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.container .main > div {
+  width: 200px;
+  height: 200px;
+  background: #f4f4f4;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.container .main > div:hover {
+  background: #f0f0f0;
+  transition: all 0.5s ease;
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.25), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+}
+.container .main > div > div:nth-child(1) {
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+}
+.container .main > div > div:nth-child(3) {
+  display: flex;
+  height: 50px;
+  padding-left: 10px;
+}
+.container .main > div > div > span {
+  align-self: center;
+}
+.container .main > div > div img {
+  display: block;
+  margin: auto;
+}
+.container .main > div > div .point {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  background: #EFE616;
+  color: #6e6e6e;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+}
+.container .main > div > div .tips {
+  font-size: 12px;
+  color: #6e6e6e;
+  line-height: 1.6em;
+}
+.edit {
+  width: 100%;
+  height: auto;
+}
+.edit input {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #f0f0f0;
+  display: block;
+}
+.register,
+.login {
+  width: 60%;
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 100px;
+}
+.register input,
+.login input {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 1em;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+}
+.register button,
+.login button {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #333;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+.register button:hover,
+.login button:hover {
+  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.25), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+}

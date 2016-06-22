@@ -1,0 +1,13 @@
+<% include header.html %>
+<form class="login" method="POST">
+    <%- err %>
+    <%- success %>
+    <label>
+        姓名: <input type="text" name="name">
+    </label>
+    <label>
+        密码: <input type="text" name="password">
+    </label>
+    <button type="submit">登录</button>
+</form>
+<% include footer.html %>

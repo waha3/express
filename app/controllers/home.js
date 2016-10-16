@@ -1,13 +1,12 @@
-'use strict'
+'use strict';
+const mongoose = require('mongoose');
+const Movie = mongoose.model('Movie');
 
-const mongoose = require('mongoose')
-const Movie = mongoose.model('Movie')
-
-module.exports = function (req, res, next) {
+module.exports = (req, res, next) => {
   Movie.fetch((err, movie) => {
-    if (err) return next(err)
+    if (err) return next(err);
     res.render('index', {
       movie: movie
-    })
-  })
-}
+    });
+  });
+};

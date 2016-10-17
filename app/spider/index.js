@@ -16,21 +16,21 @@ function request(start) {
       https.get(url, (res) => {
         let html = '';
         res.on('data', (docs) => {
-            html = html + docs;
+          html = html + docs;
         });
         res.on('end', () => {
-            resolve();
-            let $ = cheerio.load(html);
-            let $dom = $('ol.grid_view li');
-            $dom.each(i => {
-              config.data.push({
-                  poster: $dom.eq(i).find('.pic img').attr('src'),
-                  movieName: $dom.eq(i).find('.info .title').eq(0).text(),
-                  point: parseFloat($dom.eq(i).find('.star .rating_num').text()),
-                  tips: $dom.eq(i).find('.inq').text(),
-                  url: $dom.eq(i).find('.hd > a').attr('href')
-              });
+          resolve();
+          let $ = cheerio.load(html);
+          let $dom = $('ol.grid_view li');
+          $dom.each(i => {
+            config.data.push({
+              poster: $dom.eq(i).find('.pic img').attr('src'),
+              movieName: $dom.eq(i).find('.info .title').eq(0).text(),
+              point: parseFloat($dom.eq(i).find('.star .rating_num').text()),
+              tips: $dom.eq(i).find('.inq').text(),
+              url: $dom.eq(i).find('.hd > a').attr('href')
             });
+          });
         });
       }).on('error', (err) => {
         reject(err);

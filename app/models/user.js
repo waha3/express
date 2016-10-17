@@ -3,49 +3,77 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-  name: {
-    type: String,
-    unique: true,
-    default: ''
-  },
-  password: {
-    type: String,
-    default: ''
-  },
-  repeat_password: {
-    type: String,
-    default: ''
-  },
-  email: {
-    type: String,
-    default: ''
-  },
-  mobile: {
-    type: Number,
-    default: null
-  },
+  name: { type: String, unique: true, required: true },
+  salt: { type: String, default: '' },
+  hased_password: { type: String, default: '' },
+  email: { type: String, default: '' },
+  mobile: { type: Number, default: null },
   meta: {
-    createAt: {
-        type: String,
-        default: Date.now
-    },
-    updateAt: {
-        type: String,
-        default: Date.now
-    }
+    createAt: { type: String, default: Date.now },
+    updateAt: { type: String, default: Date.now }
   }
 });
 
-UserSchema.pre('save', function (next) {
-    this.password = crypto.createHash('sha1').update(this.password).digest('hex');
-    this.repeat_password = crypto.createHash('sha1').update(this.repeat_password).digest('hex');
-    next();
-});
 
-UserSchema.static = {
-    comparePassword: function () {}
+UserSchema.methods = {
+  checkPassword: function(plainPassword) {
+    return this.encryptPassword(plainPassword) === this.hased_password;
+  },
+
+  makeSalt: function() {
+    return Math.round(new Date().valueOf() * Math.random()) + '';
+  },
+
+  encryptPassword: function(plainPassword) {
+    if(!plainPassword) return '';
+    try {
+      return crypto.createHmac('sha1', this.makeSalt())
+        .update(plainPassword)
+        .digest('hex');
+    } catch(err) {
+      return err;
+    }
+  }
 };
 
-const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+// virtual property
+UserSchema.virtual('password')
+  .set(function(password) {
+    this._password = password;
+    this.salt = this.makeSalt();
+    this.hased_password = this.encryptPassword(password);
+  }).get(function() {
+    return this._password;
+  });
+
+
+// validations
+UserSchema.path('name').validate(function(name) {
+  return name.length;
+}, 'Name cannot be blank');
+
+UserSchema.path('email').validate(function(email) {
+  return email.length;
+}, 'Email cannot be blank');
+
+UserSchema.path('hased_password').validate(function(hasedPassword) {
+  return hasedPassword.length && this._password.length;
+}, 'Password cannot be blank');
+
+
+// 串行的中间件 需要调用next()
+// UserSchema.pre('save', function (next) {});
+
+UserSchema.static = {
+  load: function(options, callback) {
+    options.select = options.select || 'name';
+    return this.findOne(options.criteria)
+      .select(options.select)
+      .exec(callback);
+  }
+};
+
+mongoose.model('User', UserSchema);
+
+// module.exports = User;

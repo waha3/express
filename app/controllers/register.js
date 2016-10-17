@@ -1,24 +1,22 @@
 'use strict';
 const mongoose = require('mongoose');
-const crypto = require('crypto');
+// const crypto = require('crypto');
+const { wrap: async } = require('co');
 const User = mongoose.model('User');
 
-module.exports = (req, res, next) => {
-    let user = req.body;
-    let newUser = new User(user);
+// exports.load = async(function* (req, res, next, _id) {
+//   const criteria = { _id };
+//   try {
+//
+//   }
+// })
 
-    // if (newUser.name == '' || newUser.password == '' || newUser.mobile == null || newUser.email == '') {
-    //     req.flash('err', '字段不能为空')
-    //     return res.redirect('/register')
-    // }
-
-    // if (newUser.password !== newUser.repeat_password) {
-    //     req.flash('err', '两次的密码不一样')
-    //     return res.redirect('/register')
-    // }
-
-    newUser.save((err, user) => {
-        if (err) return next(err);
-    });
-    res.redirect('/');
-};
+exports.create = async(function* (req, res) {
+  const user = new User(req.body);
+  try {
+    yield user.save();
+    res.rediret('/');
+  } catch(err) {
+    throw new Error(err);
+  }
+});

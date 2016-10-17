@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const compress = require('compression');
 const methodOverride = require('method-override');
-const routes = require('./route.js');
 const session = require('express-session');
 const flash = require('connect-flash');
 
@@ -39,13 +38,12 @@ module.exports = (app, config) => {
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
 
-  app.use('/', routes);
+  require('../config/express.js')(app);
 
   const controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach((controller) => {
     require(controller);
   });
-
 
   app.use((req, res, next) => {
     const err = new Error('Not Found');

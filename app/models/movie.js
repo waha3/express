@@ -21,7 +21,7 @@ MovieSchema.statics = {
         .exec(cb);
     },
     fetchUrl: function(cb) {
-      return this.find({}, {url: '*'})
+      return this.find({}, {url: 1, _id: 0})
         .exec(cb);
     }
 };

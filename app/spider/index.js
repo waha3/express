@@ -1,7 +1,7 @@
 'use strict';
 const https = require('https');
 const cheerio = require('cheerio');
-const co = require('co');
+const { wrap: async } = require('co');
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
 
@@ -39,15 +39,17 @@ function request(start) {
   return promise;
 }
 
-co(function* () {
+const asyncRequest = async(function* () {
   try {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 2; i++) {
         yield request(i * 25);
     }
   } catch (err) {
-    window.console.log(err);
+    throw new Error(err);
   }
-}).then(() => {
+});
+
+asyncRequest(true).then(() => {
   for (let i of config.data) {
     let movie = new Movie({
         poster: i.poster,

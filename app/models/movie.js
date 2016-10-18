@@ -2,18 +2,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const MovieSchema = new Schema({
-    poster: String,
-    movieName: String,
-    director: [ String ],
-    actor: [ String ],
-    point: Number,
-    tips: String,
-    url: [ String ],
+    poster: { type: String, default: '' },
+    movieName: { type: String, default: '' },
+    director: { type: Array, default: '' },
+    actor: { type: Array, default: '' },
+    point: { type: Number, default: '' },
+    tips: { type: String, default: '' },
+    url: { type: String, default: '' },
     meta: {
-        createAt: {
-            type: String,
-            default: Date.now
-        }
+      createAt: { type: String, default: Date.now}
     }
 });
 
@@ -22,8 +19,11 @@ MovieSchema.statics = {
       return this.find({})
         .sort({point: -1})
         .exec(cb);
+    },
+    fetchUrl: function(cb) {
+      return this.find({}, {url: '*'})
+        .exec(cb);
     }
 };
 
-const Movie = mongoose.model('Movie', MovieSchema);
-module.exports = Movie;
+mongoose.model('Movie', MovieSchema);

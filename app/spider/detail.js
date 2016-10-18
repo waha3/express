@@ -1,10 +1,16 @@
-// 'use strict';
-// const Movie = mongoose.model('Movie');
-// const mongoose = require('mongoose');
-//
-// let urls = []
-//
-// Movie.find({}, { url: '*' }, (err, docs) => {
-//     if (err) return console.error(err)
-//     console.log(docs)
-// })
+const mongoose = require('mongoose');
+// mongoose.Promise = Promise;
+const Movie = mongoose.model('Movie');
+const { wrap: async } = require('co');
+// const url = [];
+
+const fetchDetail = async(function* () {
+  try {
+    yield Movie.fetchUrl();
+  } catch (err) {
+    throw Error(err);
+  }
+});
+
+
+fetchDetail(true).then(data => console.log(data));

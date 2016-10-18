@@ -15,8 +15,8 @@ db.on('error', () => {
 });
 
 models.forEach(model => require(model));
-
 require('./config/express')(app, config);
+require('./config/route')(app);
 
 if (argv.s) { // -s 爬虫
   require('./app/spider/index.js');

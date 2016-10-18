@@ -1,11 +1,11 @@
 'use strict';
 const path = require('path');
-const root = path.join(__dirname, '..');
+const rootPath = path.resolve(__dirname, '..');
 const env = process.env.NODE_ENV || 'development';
 
 const config = {
   development: {
-    root: root,
+    root: rootPath,
     app: {
       name: 'blog'
     },
@@ -13,7 +13,7 @@ const config = {
     db: 'mongodb://localhost/blog'
   },
   production: {
-    root: root,
+    root: rootPath,
     app: {
       name: 'blog'
     },

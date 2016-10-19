@@ -23,6 +23,7 @@ function parseHtml($, url) {
     summary: '',
     comments: [{
       title: '',
+      url: '',
       content: '',
       author: {
         loginname: '',
@@ -41,7 +42,8 @@ function parseHtml($, url) {
   $comments = $('#review_section > div').eq(1);
   $comments.each(i => {
     data.comments.push({
-      title: $comments[i].find('h3 a:last')
+      title: $comments[i].find('h3 a:last').text().trim(),
+      url: $comments[i].find('h3 a:last').attr('href').trim()
     });
   });
 

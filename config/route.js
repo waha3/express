@@ -4,7 +4,8 @@ const home = require('../app/controllers/home.js');
 // const login = require('../app/controllers/login.js');
 
 module.exports = (app) => {
-  app.get('/', home);
+  app.get('/', home.home);
+  app.get('/movies/:id', home.movies);
   app.get('/register', (req, res) => {
       res.render('register', {
           err: req.flash('err').toString()

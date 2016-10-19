@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const { wrap: async } = require('co');
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
+mongoose.Promise = Promise;
 
 let config = {
   url: 'https://movie.douban.com/top250',
@@ -41,7 +42,7 @@ function request(start) {
 
 const asyncRequest = async(function* () {
   try {
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 1; i++) {
         yield request(i * 25);
     }
   } catch (err) {

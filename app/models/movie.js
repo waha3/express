@@ -9,6 +9,17 @@ const MovieSchema = new Schema({
   point: { type: Number, default: '' },
   tips: { type: String, default: '' },
   url: { type: String, default: '' },
+  summary: { type: String, default: '' },
+  comments: [{
+    title: { type: String, default: '' },
+    url: { type: String, default: '' },
+    content: { type: String, default: '' },
+    author: {
+      loginname: { type: String, default: '' },
+      url: { type: String, default: '' },
+      avator: { type: String, default: '' }
+    }
+  }],
   meta: {
     createAt: { type: String, default: Date.now}
   }

@@ -11,7 +11,7 @@ const fetchDetail = async(function* () {
     const result = yield Movie.getUrl();
     return result;
   } catch (err) {
-    throw Error(err);
+    throw new Error(err);
   }
 });
 
@@ -34,19 +34,24 @@ function parseHtml($, url) {
   };
 
   data.movieName = $('#content h1').text().trim();
+  data.summary = $('.related-info').find('.short > span').text().trim();
   data.director.push($('#info > span').eq(0).find('.attrs a').text().trim());
-  // let $dom = $('.actor span.attrs').children('a');
-  // $dom.each(i => console.log(i));
-  data.summary = $('.related-info').find('.short');
-  // data.comments =
-  $comments = $('#review_section > div').eq(1);
+  let $actors = $('.attrs').eq(2).find('span');
+  $actors.each(i => data.actors.push($actors[i].find('a').text().trim()));
+  let $comments = $('#review_section > div').eq(1).find('.review');
   $comments.each(i => {
     data.comments.push({
-      title: $comments[i].find('h3 a:last').text().trim(),
-      url: $comments[i].find('h3 a:last').attr('href').trim()
+      title: $comments.eq(i).find('h3 a').last().text().trim(),
+      url: $comments.eq(i).find('h3 a').last().attr('href').trim(),
+      content: $comments.eq(i).find('.review-short > span').text().trim(),
+      author: {
+        loginname: $comments.eq(i).find('h3 a').first().attr('title').trim(),
+        url: $comments.eq(i).find('h3 a').first().attr('href').trim(),
+        avator: $comments.eq(i).find('h3 a').first().find('img').attr('src').trim()
+      }
     });
   });
-
+  // console.log(data);
   insertData.push(data);
 }
 

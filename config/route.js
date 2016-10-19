@@ -1,6 +1,6 @@
 'use strict';
 const home = require('../app/controllers/home.js');
-// const register = require('../app/controllers/register.js');
+const register = require('../app/controllers/register.js');
 // const login = require('../app/controllers/login.js');
 
 module.exports = (app) => {
@@ -12,7 +12,7 @@ module.exports = (app) => {
       });
   });
 
-  // app.post('/register', register);
+  app.post('/register', register.create);
   // app.get('/login', (req, res) => {
   //     res.render('login', {
   //         err: req.flash('err').toString(),

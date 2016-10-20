@@ -4,7 +4,6 @@ const { wrap: async } = require('co');
 const request = require('request');
 const cheerio = require('cheerio');
 mongoose.Promise = Promise;
-let insertData = [];
 
 const fetchDetail = async(function* () {
   try {
@@ -36,8 +35,10 @@ function parseHtml($, url) {
   data.movieName = $('#content h1').text().trim();
   data.summary = $('.related-info').find('.short > span').text().trim();
   data.director.push($('#info > span').eq(0).find('.attrs a').text().trim());
+
   let $actors = $('.attrs').eq(2).find('span');
-  $actors.each(i => data.actors.push($actors[i].find('a').text().trim()));
+  $actors.each(i => data.actors.push($actors.eq(i).find('a').text().trim()));
+
   let $comments = $('#review_section > div').eq(1).find('.review');
   $comments.each(i => {
     data.comments.push({
@@ -51,35 +52,36 @@ function parseHtml($, url) {
       }
     });
   });
-  // console.log(data);
-  insertData.push(data);
+  return data;
 }
 
-function fetchUrl(urlArray, callback) {
-  let html = '';
-  for (let i of urlArray) {
-     request.get(i.url)
+function fetchUrl(url) {
+  let promise = new Promise((resolve, reject) => {
+    let html = '';
+    request.get(url)
       .on('response', (res) => {
         res.on('data', (doc) => {
           html = html + doc;
         });
         res.on('end', () => {
           let $ = cheerio.load(html);
-          parseHtml($, i.url);
-          callback();
+          let result = parseHtml($, url);
+          resolve(result);
         });
       })
       .on('error', (err) => {
-        global.console.log(err);
+        reject(err);
       });
-    }
-  }
+  });
+  return promise;
+}
 
-function updateInfo() {
-  for (let i of insertData) {
-    Movie.updateMovieInfo(i.url, i.director);
-  }
+function updateInfo(data) {
+  Movie.updateMovieInfo(data);
 }
 
 fetchDetail(true)
-  .then(arr => fetchUrl(arr, updateInfo));
+  .then(urlArr => urlArr.map(i => {
+    fetchUrl(i.url).then(data => updateInfo(data));
+  }))
+  .catch(err => global.console.log(err));

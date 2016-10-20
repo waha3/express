@@ -1,7 +1,7 @@
 <% include header.html %>
   <div class="main">
-    <% movie.forEach(function(i){ %>
-      <a href="">
+    <% movies.forEach(function(i){ %>
+      <a href="/movies/<%- i._id%>">
         <div class="movie">
           <div>
             <span class="point"><%- i.point %></span>

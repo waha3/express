@@ -20,7 +20,7 @@ exports.create = async(function* (req, res) {
 exports.login = async(function* (req, res) {
   const user = new User(req.body);
   try {
-    yield user.findOne();
+    yield User.findOne(user);
     return res.redirect('/');
   } catch(err) {
     global.console.log(err);

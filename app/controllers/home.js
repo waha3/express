@@ -3,19 +3,20 @@ const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
 
 exports.home = (req, res, next) => {
-  Movie.fetch((err, movie) => {
+  Movie.fetch((err, movies) => {
     if (err) return next(err);
     res.render('index', {
-      movie: movie
+      movies: movies
     });
   });
 };
 
 exports.movies = (req, res, next) => {
-  Movie.fetch((err) => {
+  Movie.fetchMovie(req.params.id, (err, movie) => {
     if (err) return next(err);
     res.render('movies', {
-      message: 'hello world'
+      message: 'hello world',
+      movie
     });
   });
 };

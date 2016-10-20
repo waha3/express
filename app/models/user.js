@@ -9,8 +9,8 @@ const UserSchema = new Schema({
   email: { type: String, default: '' },
   mobile: { type: Number, default: null },
   meta: {
-    createAt: { type: String, default: Date.now },
-    updateAt: { type: String, default: Date.now }
+    createAt: { type: Date, default: Date.now },
+    updateAt: { type: Date, default: Date.now }
   }
 });
 

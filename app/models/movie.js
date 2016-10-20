@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const MovieSchema = new Schema({
   poster: { type: String, default: '' },
   movieName: { type: String, default: '' },
-  director: { type: Array, default: '' },
-  actor: { type: Array, default: '' },
-  point: { type: Number, default: '' },
+  director: { type: Array, default: [] },
+  actors: { type: Array, default: [] },
+  point: { type: Number, default: null },
   tips: { type: String, default: '' },
   url: { type: String, default: '' },
   summary: { type: String, default: '' },
@@ -33,7 +33,7 @@ MovieSchema.statics = {
   },
 
   fetchMovie: function(id, cb) {
-    return this.findOne({_id, id})
+    return this.findById(id)
       .exec(cb);
   },
 
@@ -42,8 +42,15 @@ MovieSchema.statics = {
       .exec(cb);
   },
 
-  updateMovieInfo: function(url, val) {
-    this.where({url: url}).update({$set: {director: val}}).exec();
+  updateMovieInfo: function(data) {
+    this.where({url: data.url}).update({$set: {
+      director: data.director,
+      actors: data.actors,
+      summary: data.summary,
+      comments: [
+        ...data.comments
+      ]
+    }}).exec();
   }
 };
 

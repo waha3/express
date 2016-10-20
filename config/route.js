@@ -1,7 +1,6 @@
 'use strict';
 const home = require('../app/controllers/home.js');
-const register = require('../app/controllers/register.js');
-// const login = require('../app/controllers/login.js');
+const user = require('../app/controllers/user.js');
 
 module.exports = (app) => {
   app.get('/', home.home);
@@ -12,15 +11,16 @@ module.exports = (app) => {
       });
   });
 
-  app.post('/register', register.create);
-  // app.get('/login', (req, res) => {
-  //     res.render('login', {
-  //         err: req.flash('err').toString(),
-  //         success: req.flash('success').toString()
-  //     });
-  // });
-  // app.post('/login', login);
+  app.post('/register', user.create);
+  app.get('/login', (req, res) => {
+      res.render('login', {
+          err: req.flash('err').toString(),
+          success: req.flash('success').toString()
+      });
+  });
+  app.post('/login', user.login);
 
+  // 错误处理
   app.use((req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;

@@ -65,15 +65,20 @@ UserSchema.path('hased_password').validate(function(hasedPassword) {
 // 串行的中间件 需要调用next()
 // UserSchema.pre('save', function (next) {});
 
-UserSchema.static = {
+UserSchema.statics = {
   load: function(options, callback) {
     options.select = options.select || 'name';
     return this.findOne(options.criteria)
       .select(options.select)
       .exec(callback);
-  }
+  },
+
+  // login: function(req, cb) {
+  //   return this.findOne({
+  //     name: req.body.name,
+  //     password: this.encryptPassword(req.body.password)
+  //   }).exec(cb);
+  // }
 };
 
 mongoose.model('User', UserSchema);
-
-// module.exports = User;

@@ -1,19 +1,20 @@
 <% include header.html %>
- <div class="main">
-  <% movie.forEach(function(i){ %>
-      <div>
+  <div class="main">
+    <% movie.forEach(function(i){ %>
+      <a href="">
+        <div class="movie">
           <div>
-              <span class="point"><%- i.point %></span>
-              <span class="name"><%-i.movieName %></span>
+            <span class="point"><%- i.point %></span>
+            <span class="name"><%-i.movieName %></span>
           </div>
           <div>
-              <img src='<%- i.poster %>'>
+            <img src='<%- i.poster %>'>
           </div>
           <div>
-              <span class="tips">"<%- i.tips %>"</span>
+            <span class="tips">"<%- i.tips %>"</span>
           </div>
-      </div>
-    <% }) %>
-</div>
-
+        </div>
+      </a>
+      <% }) %>
+  </div>
 <% include footer.html %>

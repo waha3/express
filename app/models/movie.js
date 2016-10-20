@@ -21,7 +21,7 @@ const MovieSchema = new Schema({
     }
   }],
   meta: {
-    createAt: { type: String, default: Date.now}
+    createAt: { type: Date, default: Date.now }
   }
 });
 

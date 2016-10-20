@@ -1,108 +1,120 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
-header{
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background: teal;
-    display: flex;
-    flex-direction: row-reverse;
-    button{
-        width: 50px;
-        height: 30px;
-        border: none;
-        align-self: center;
-        margin-right: 10px;
-        background: #333;
-        box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.25),0px 2px 3px 0px rgba(0,0,0,0.25);
-        a{
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            line-height: 30px;
-            text-align: center;
-        }
+
+header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: teal;
+  display: flex;
+  flex-direction: row-reverse;
+
+  button {
+    width: 50px;
+    height: 30px;
+    border: none;
+    align-self: center;
+    margin-right: 10px;
+    background: #333;
+    box-shadow: 0 2px 20px 0 rgba(0,0,0,0.25),0px 2px 3px 0 rgba(0,0,0,0.25);
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      line-height: 30px;
+      text-align: center;
     }
+  }
 }
+
 .container {
-    width: 1000px;
-    height: auto;
-    margin: auto;
-    // background: #f4f4f4;
-    .main {
-        width: 100%;
-        height: auto;
-        padding-top: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        > div {
-            width: 200px;
-            height: 200px;
-            background: #f4f4f4;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            &:hover{
-                background: #f0f0f0;
-                transition: all 0.5s ease;
-                box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.25),0px 2px 3px 0px rgba(0,0,0,0.25);
-            }
-            > div {
-                &:nth-child(1){
-                    display: flex;
-                    height: 50px;
-                    justify-content: space-around;
-                }
-                &:nth-child(3){
-                    display: flex;
-                    height: 50px;
-                    padding-left: 10px;
-                }
-                > span {
-                    align-self: center;
-                }
-                img{
-                    display: block;
-                    margin: auto;
-                }
-                .point{
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    line-height: 30px;
-                    text-align: center;
-                    background: #EFE616;
-                    color: #6e6e6e;
-                    font-size: 14px;
-                    font-weight: bold;
-                    display: block;
-                }
-                .name{
-                    // // float:right;
-                    // width: 85%;
-                    //  color: #6e6e6e;
-                    // line-height: 1.6em;
-                }
-                .tips{
-                    font-size: 12px;
-                    color: #6e6e6e;
-                    line-height: 1.6em;
-                }
-            }
-        }
-    }
-}
-.edit {
+  width: 1000px;
+  height: auto;
+  margin: auto;
+  // background: #f4f4f4;
+  .main {
     width: 100%;
     height: auto;
-    input {
-        width: 200px;
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #f0f0f0;
-        display: block;
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      text-decoration: none;
     }
+
+    .movie {
+      width: 200px;
+      height: 200px;
+      background: #f4f4f4;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+
+      &:hover {
+        background: #f0f0f0;
+        transition: all 0.5s ease;
+        box-shadow: 0 2px 20px 0 rgba(0,0,0,0.25),0px 2px 3px 0 rgba(0,0,0,0.25);
+      }
+
+      > div {
+        &:nth-child(1) {
+          display: flex;
+          height: 50px;
+          justify-content: space-around;
+        }
+
+        &:nth-child(3) {
+          display: flex;
+          height: 50px;
+          padding-left: 10px;
+        }
+
+        > span {
+          align-self: center;
+        }
+
+        img {
+          display: block;
+          margin: auto;
+        }
+
+        .point {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          line-height: 30px;
+          text-align: center;
+          background: #EFE616;
+          color: #6e6e6e;
+          font-size: 14px;
+          font-weight: bold;
+          display: block;
+        }
+
+        .tips {
+          font-size: 12px;
+          color: #6e6e6e;
+          line-height: 1.6em;
+        }
+      }
+    }
+  }
+}
+
+.edit {
+  width: 100%;
+  height: auto;
+
+  input {
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #f0f0f0;
+    display: block;
+  }
 }

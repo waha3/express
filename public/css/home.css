@@ -17,7 +17,7 @@ header button {
   align-self: center;
   margin-right: 10px;
   background: #333;
-  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.25), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.25), 0px 2px 3px 0 rgba(0, 0, 0, 0.25);
 }
 header button a {
   display: block;
@@ -38,7 +38,10 @@ header button a {
   display: flex;
   flex-wrap: wrap;
 }
-.container .main > div {
+.container .main a {
+  text-decoration: none;
+}
+.container .main .movie {
   width: 200px;
   height: 200px;
   background: #f4f4f4;
@@ -47,29 +50,29 @@ header button a {
   flex-direction: column;
   cursor: pointer;
 }
-.container .main > div:hover {
+.container .main .movie:hover {
   background: #f0f0f0;
   transition: all 0.5s ease;
-  box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.25), 0px 2px 3px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.25), 0px 2px 3px 0 rgba(0, 0, 0, 0.25);
 }
-.container .main > div > div:nth-child(1) {
+.container .main .movie > div:nth-child(1) {
   display: flex;
   height: 50px;
   justify-content: space-around;
 }
-.container .main > div > div:nth-child(3) {
+.container .main .movie > div:nth-child(3) {
   display: flex;
   height: 50px;
   padding-left: 10px;
 }
-.container .main > div > div > span {
+.container .main .movie > div > span {
   align-self: center;
 }
-.container .main > div > div img {
+.container .main .movie > div img {
   display: block;
   margin: auto;
 }
-.container .main > div > div .point {
+.container .main .movie > div .point {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -81,7 +84,7 @@ header button a {
   font-weight: bold;
   display: block;
 }
-.container .main > div > div .tips {
+.container .main .movie > div .tips {
   font-size: 12px;
   color: #6e6e6e;
   line-height: 1.6em;

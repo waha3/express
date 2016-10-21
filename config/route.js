@@ -6,17 +6,18 @@ module.exports = (app) => {
   app.get('/', home.home);
   app.get('/movies/:id', home.movies);
   app.get('/register', (req, res) => {
-      res.render('register', {
-          err: req.flash('err').toString()
-      });
+    res.render('register', {
+      error: req.flash('error'),
+      success: req.flash('success')
+    });
   });
 
   app.post('/register', user.create);
   app.get('/login', (req, res) => {
-      res.render('login', {
-          err: req.flash('err').toString(),
-          success: req.flash('success').toString()
-      });
+    res.render('login', {
+      err: req.flash('err'),
+      success: req.flash('success')
+    });
   });
   app.post('/login', user.login);
   app.get('/post', (req, res) => {

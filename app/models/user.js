@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   salt: { type: String, default: '' },
   hased_password: { type: String, default: '' },
   email: { type: String, default: '' },
-  mobile: { type: Number, default: null },
+  mobile: { type: String, default: '' },
   meta: {
     createAt: { type: Date, default: Date.now },
     updateAt: { type: Date, default: Date.now }

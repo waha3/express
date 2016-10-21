@@ -1,6 +1,34 @@
 <% include header.html %>
  <div class="main">
-  <%- message%>
+   <div class="infomation">
+     <div class="left">
+       <img src="<%- movie.poster %>" alt="" />
+     </div>
+     <div class="right">
+       <div>导演: <span><%- movie.director %></span></div>
+       <div>演员： <% movie.actors.map(val => {%><span><%- val %></span><% }) %></div>
+       </div>
+     </div>
+   </div>
+   <div class="summary">
+     <h3>剧情简介</h3>
+     <p><%- movie.summary %></p>
+   </div>
+
+   <div class="comments">
+     <% movie.comments.map(val => { %>
+       <div class="item">
+         <div class="top">
+           <img src="<%- val.author.avator %>" alt="" />
+           <h4><%- val.title %></h4>
+         </div>
+         <div class="content">
+           <%- val.content %>
+         </div>
+       </div>
+     <%}) %>
+   </div>
+
 </div>
 
 <% include footer.html %>

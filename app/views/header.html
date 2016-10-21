@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
   <title>express website</title>
+  <link rel="stylesheet" href="/lib/semantic.min.css">
   <link rel="stylesheet" href="/css/mix.css">
   <% if (ENV_DEVELOPMENT) { %>
     <script src="http://localhost:35729/livereload.js"></script>
@@ -11,6 +12,7 @@
 </head>
 <body>
   <header>
+    <button><a href="/post">发布文章</a></button>
     <button><a href="/login">登入</a></button>
     <button><a href="/register">注册</a></button>
     <button><a href="/">主页</a></button>

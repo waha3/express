@@ -27,7 +27,7 @@ UserSchema.methods = {
   encryptPassword: function(plainPassword) {
     if(!plainPassword) return '';
     try {
-      return crypto.createHmac('sha1', this.makeSalt())
+      return crypto.createHmac('sha1', this.salt)
         .update(plainPassword)
         .digest('hex');
     } catch(err) {
@@ -62,8 +62,10 @@ UserSchema.path('hased_password').validate(function(hasedPassword) {
 }, 'Password cannot be blank');
 
 
-// 串行的中间件 需要调用next()
-// UserSchema.pre('save', function (next) {});
+// 串行的中间件 需要调用next() 保存数据前做验证
+// UserSchema.pre('save', function (next) {
+//   if (this.passValidation())
+// });
 
 UserSchema.statics = {
   load: function(options, callback) {
@@ -71,14 +73,7 @@ UserSchema.statics = {
     return this.findOne(options.criteria)
       .select(options.select)
       .exec(callback);
-  },
-
-  // login: function(req, cb) {
-  //   return this.findOne({
-  //     name: req.body.name,
-  //     password: this.encryptPassword(req.body.password)
-  //   }).exec(cb);
-  // }
+  }
 };
 
 mongoose.model('User', UserSchema);

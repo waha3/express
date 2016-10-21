@@ -1,6 +1,7 @@
 'use strict';
 const home = require('../app/controllers/home.js');
 const user = require('../app/controllers/user.js');
+const posts = require('../app/controllers/posts.js');
 
 module.exports = (app) => {
   app.get('/', home.home);
@@ -21,8 +22,14 @@ module.exports = (app) => {
   });
   app.post('/login', user.login);
   app.get('/post', (req, res) => {
-    res.render('post');
+    res.render('post', {
+      err: req.flash('err'),
+      success: req.flash('success')
+    });
   });
+
+  app.post('/post', posts.create);
+  app.get('/post/:id', posts.fetchPost);
 
   // 错误处理
   app.use((req, res, next) => {

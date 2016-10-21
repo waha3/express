@@ -1,0 +1,10 @@
+.information {
+  width: 100%;
+  height: auto;
+}
+.information .left {
+  float: left;
+}
+.information .right {
+  float: right;
+}

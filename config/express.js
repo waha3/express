@@ -26,6 +26,10 @@ module.exports = (app, config) => {
 
   app.use(flash());
 
+  // passport.js
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());

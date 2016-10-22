@@ -1,21 +1,23 @@
 <% include header.html %>
   <%- success %>
-  <div class="main">
-    <% movies.forEach(function(i){ %>
-      <a href="/movies/<%- i._id%>">
-        <div class="movie">
-          <div>
-            <span class="point"><%- i.point %></span>
-            <span class="name"><%-i.movieName %></span>
+  <div>
+    <div class="row">
+      <% movies.forEach(function(i){ %>
+      <div class="col s2">
+        <div class="card">
+          <div class="card-image">
+            <img src="<%- i.poster %>">
+            <span class="card-title"><%-i.movieName %></span>
           </div>
-          <div>
-            <img src='<%- i.poster %>'>
+          <div class="card-content">
+            <p><%- i.tips %></p>
           </div>
-          <div>
-            <span class="tips">"<%- i.tips %>"</span>
+          <div class="card-action">
+            <a href="/movies/<%- i._id%>">详情..</a>
           </div>
         </div>
-      </a>
+      </div>
       <% }) %>
+    </div>
   </div>
 <% include footer.html %>

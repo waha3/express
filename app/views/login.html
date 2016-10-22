@@ -1,13 +1,21 @@
 <% include header.html %>
-<form class="login" method="POST">
-    <%- err %>
-    <%- success %>
-    <label>
-        姓名: <input type="text" name="name">
-    </label>
-    <label>
-        密码: <input type="text" name="password">
-    </label>
-    <button type="submit" style="margin-right: -45px;">登录</button>
-</form>
+  <%- error %>
+  <%- success %>
+  <div class="row">
+    <form class="col s12" method="POST">
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="name" id="name" type="text" class="validate">
+          <label for="name">姓名</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="password" id="password" type="password" class="validate">
+          <label for="password">密码</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn right" type="submit">登录</button>
+    </form>
+  </div>
 <% include footer.html %>

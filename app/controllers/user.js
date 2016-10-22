@@ -24,17 +24,14 @@ exports.create = async(function * (req, res) {
 });
 
 exports.login = async(function * (req, res) {
-  const user = new User();
   try {
     yield User.findOne({name: req.body.name})
-    .select('salt hased_password')
-    .exec((err, doc) => {
-      const _hasedPassword = user.encryptPassword(req.body.password);
-      console.log(_hasedPassword);
-      if (doc.hased_password === _hasedPassword) {
+    .exec((err, user) => {
+      if (err) console.log(err);
+      const _password = user.encryptPassword(req.body.password);
+      console.log(_password);
+      if (_password === user.hased_password) {
         req.flash('success', '登录成功');
-      } else {
-        req.flash('error', '账号或密码错误');
       }
     });
     return res.redirect('/login');

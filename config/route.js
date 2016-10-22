@@ -6,30 +6,37 @@ const posts = require('../app/controllers/posts.js');
 module.exports = (app) => {
   app.get('/', home.home);
   app.get('/movies/:id', home.movies);
+
   app.get('/register', (req, res) => {
     res.render('register', {
       error: req.flash('error'),
       success: req.flash('success')
     });
   });
-
   app.post('/register', user.create);
+
   app.get('/login', (req, res) => {
     res.render('login', {
-      err: req.flash('err'),
+      error: req.flash('error'),
       success: req.flash('success')
     });
   });
   app.post('/login', user.login);
+
   app.get('/post', (req, res) => {
     res.render('post', {
-      err: req.flash('err'),
+      error: req.flash('error'),
       success: req.flash('success')
     });
   });
-
   app.post('/post', posts.create);
   app.get('/post/:id', posts.fetchPost);
+  app.get('/list', (req, res) => {
+    res.render('list', {
+      error: req.flash('error'),
+      success: req.flash('success')
+    });
+  });
 
   // 错误处理
   app.use((req, res, next) => {

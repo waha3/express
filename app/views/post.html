@@ -1,20 +1,25 @@
 <% include header.html %>
-  <%- err %>
+  <%- error %>
   <%- success %>
-  <div class="post">
-    <div class="ui breadcrumb">
-      <a href="/" class="section">首页</a>
-      <div class="divider"> / </div>
-      <div class="section active">发表文章</div>
-    </div>
-    <form method="POST">
-        <label for="title">标题</label>
-        <input name="title" type="text" id="title">
-        <label for="author">作者</label>
-        <input name="author" type="text" id="author">
-        <label for="content"></label>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <input type="submit">
+  <div class="row">
+    <form class="col s12" method="POST">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="title" id="title" type="text" class="validate">
+          <label for="title">标题</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="author" id="author" type="text" class="validate">
+          <label for="author">作者</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea" class="materialize-textarea"></textarea>
+          <label for="textarea">内容</label>
+        </div>
+      </div>
+      <button class="waves-effect waves-light btn right" type="submit">发布</button>
     </form>
   </div>
 <% include footer.html %>

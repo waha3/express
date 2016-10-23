@@ -3,17 +3,16 @@
   <div>
     <div class="row">
       <% movies.forEach(function(i){ %>
-      <div class="col s2">
+      <div class="col s3">
         <div class="card">
-          <div class="card-image">
-            <img src="<%- i.poster %>">
-            <span class="card-title"><%-i.movieName %></span>
-          </div>
-          <div class="card-content">
+          <a href="/movies/<%- i._id%>">
+            <div class="card-image">
+              <img src="<%- i.poster %>">
+              <span class="card-title"><%-i.movieName %></span>
+            </div>
+          </a>
+          <div class="card-content card-height">
             <p><%- i.tips %></p>
-          </div>
-          <div class="card-action">
-            <a href="/movies/<%- i._id%>">详情..</a>
           </div>
         </div>
       </div>

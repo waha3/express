@@ -5,17 +5,19 @@ const { wrap: async } = require('co');
 mongoose.Promise = Promise;
 
 exports.home = async(function* (req, res) {
+  console.log(req.session.user);
   try {
     Movie.fetch((err, movies) => {
       if (err) return next(err);
       res.render('index', {
         movies: movies,
         success: req.flash('success'),
-        error: req.flash('error')
+        error: req.flash('error'),
+        message: 'hello world'
       });
     });
   } catch (err) {
-    console.log(err);
+    global.console.log(err);
   }
 });
 
@@ -28,6 +30,6 @@ exports.movies = async(function* (req, res) {
       });
     });
   } catch (e) {
-    console.log(e);
+    global.console.log(e);
   }
 });

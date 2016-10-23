@@ -7,3 +7,8 @@
   top: 7px;
   left: 15px;
 }
+.card-height {
+  height: 82px;
+  max-height: 82px;
+  overflow: hidden;
+}

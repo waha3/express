@@ -13,14 +13,13 @@ exports.create = async(function* (req, res) {
     req.flash('success', '发布成功');
     return res.redirect('/post');
   } catch (e) {
-    console.log(e);
+    global.console.log(e);
   }
 });
 
 exports.fetchPost = async(function* (req, res) {
   try {
     Posts.fetchPost(req.params.id, (err, post) => {
-      console.log(post);
       res.render('acticle', {
         success: req.flash('success'),
         error: req.flash('error'),
@@ -28,6 +27,6 @@ exports.fetchPost = async(function* (req, res) {
       });
     });
   } catch (err){
-    console.log(err);
+    global.console.log(err);
   }
 });

@@ -44,6 +44,7 @@ MovieSchema.statics = {
 
   updateMovieInfo: function(data) {
     this.where({url: data.url}).update({$set: {
+      poster: data.poster,
       director: data.director,
       actors: data.actors,
       summary: data.summary,

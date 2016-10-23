@@ -15,16 +15,24 @@
   <header>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">
-          <img class="avator avator_postion" src="https://avatars3.githubusercontent.com/u/12130012?v=3&s=466" alt="" />
-        </a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><a href="/">主页</a></li>
-          <li><a href="/login">登入</a></li>
+          <% if (user) {%>
+          <li><a href="/loginout">登出</a></li>
+          <% } else { %>
+            <li><a href="/login">登入</a></li>
+          <% } %>
           <li><a href="/register">注册</a></li>
           <li><a href="/list">文章</a></li>
           <li><a href="/post">发布文章</a></li>
         </ul>
+        <% if (user) {%>
+        <a class="right brand-logo" href="#">
+          <img class="avator avator_postion" src="https://avatars3.githubusercontent.com/u/12130012?v=3&s=466" alt="" />
+        </a>
+        <% } else { %>
+          hello world
+        <% } %>
       </div>
     </nav>
   </header>

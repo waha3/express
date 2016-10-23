@@ -4,13 +4,22 @@ const user = require('../app/controllers/user.js');
 const posts = require('../app/controllers/posts.js');
 
 module.exports = (app) => {
+  // 登录验证中间件
+  // app.use((req, res, next) => {
+  //   res.render('header', {
+  //     user: req.session.user
+  //   });
+  //   next();
+  // });
+
   app.get('/', home.home);
   app.get('/movies/:id', home.movies);
 
   app.get('/register', (req, res) => {
     res.render('register', {
       error: req.flash('error'),
-      success: req.flash('success')
+      success: req.flash('success'),
+      user: req.session.user
     });
   });
   app.post('/register', user.create);
@@ -18,15 +27,21 @@ module.exports = (app) => {
   app.get('/login', (req, res) => {
     res.render('login', {
       error: req.flash('error'),
-      success: req.flash('success')
+      success: req.flash('success'),
+      user: req.session.user
     });
   });
   app.post('/login', user.login);
+  app.get('/loginout', (req, res) => {
+    delete req.session.user;
+    res.redirect('/');
+  });
 
   app.get('/post', (req, res) => {
     res.render('post', {
       error: req.flash('error'),
-      success: req.flash('success')
+      success: req.flash('success'),
+      user: req.session.user
     });
   });
   app.post('/post', posts.create);
@@ -34,7 +49,8 @@ module.exports = (app) => {
   app.get('/list', (req, res) => {
     res.render('list', {
       error: req.flash('error'),
-      success: req.flash('success')
+      success: req.flash('success'),
+      user: req.session.user
     });
   });
 

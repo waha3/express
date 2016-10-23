@@ -4,10 +4,10 @@
     <div class="row">
       <% movies.forEach(function(i){ %>
       <div class="col s3">
-        <div class="card">
+        <div class="card hoverable">
           <a href="/movies/<%- i._id%>">
             <div class="card-image">
-              <img src="<%- i.poster %>">
+              <img class="responsive-img" src="<%- i.poster %>">
               <span class="card-title"><%-i.movieName %></span>
             </div>
           </a>
@@ -20,3 +20,12 @@
     </div>
   </div>
 <% include footer.html %>
+<script type="text/javascript">
+  function scrollImage() {
+    var imageWidth = $('.card-image').width();
+    var scale = 1.48;
+    $('.card-image').height(scale * imageWidth);
+  }
+
+  // $(window).resize(scrollImage);
+</script>

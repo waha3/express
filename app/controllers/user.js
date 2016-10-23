@@ -29,7 +29,7 @@ exports.login = async(function * (req, res) {
       if (err) global.console.log(err);
       const _password = user.encryptPassword(req.body.password);
       if (_password === user.hased_password) {
-        req.session.user = 'hello';
+        req.session.user = user;
         req.flash('success', '登录成功');
       }
     });

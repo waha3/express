@@ -17,6 +17,7 @@ const fetchDetail = async(function* () {
 function parseHtml($, url) {
   const data = {
     url: url,
+    poster: '',
     director: [],
     actors: [],
     summary: '',
@@ -32,6 +33,7 @@ function parseHtml($, url) {
     }]
   };
 
+  data.poster = $('.nbgnbg').find('img').attr('src');
   data.movieName = $('#content h1').text().trim();
   data.summary = $('.related-info').find('.short > span').text().trim();
   data.director.push($('#info > span').eq(0).find('.attrs a').text().trim());

@@ -5,15 +5,15 @@ const { wrap: async } = require('co');
 mongoose.Promise = Promise;
 
 exports.home = async(function* (req, res) {
-  console.log(req.session.user);
+  const user = req.session.user;
   try {
     Movie.fetch((err, movies) => {
       if (err) return next(err);
       res.render('index', {
-        movies: movies,
         success: req.flash('success'),
         error: req.flash('error'),
-        message: 'hello world'
+        movies,
+        user
       });
     });
   } catch (err) {
@@ -22,11 +22,13 @@ exports.home = async(function* (req, res) {
 });
 
 exports.movies = async(function* (req, res) {
+  const user = req.session.user;
   try {
     Movie.fetchMovie(req.params.id, (err, movie) => {
       if (err) return next(err);
       res.render('movies', {
-        movie
+        movie,
+        user
       });
     });
   } catch (e) {

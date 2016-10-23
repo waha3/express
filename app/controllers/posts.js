@@ -18,12 +18,14 @@ exports.create = async(function* (req, res) {
 });
 
 exports.fetchPost = async(function* (req, res) {
+  const user = req.session.user;
   try {
     Posts.fetchPost(req.params.id, (err, post) => {
       res.render('acticle', {
         success: req.flash('success'),
         error: req.flash('error'),
-        post
+        post,
+        user
       });
     });
   } catch (err){

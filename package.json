@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "async": "^2.1.2",
+    "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
+    "babel-preset-stage-3": "^6.17.0",
     "body-parser": "^1.13.3",
     "cheerio": "^0.22.0",
     "co": "^4.6.0",

@@ -27,6 +27,10 @@ exports.login = async(function * (req, res) {
     yield User.findOne({name: req.body.name})
     .exec((err, user) => {
       if (err) global.console.log(err);
+      if (!user) {
+        req.flash('error', '用户不存在');
+        return res.redirect('/login');
+      }
       const _password = user.encryptPassword(req.body.password);
       if (_password === user.hased_password) {
         req.session.user = user;

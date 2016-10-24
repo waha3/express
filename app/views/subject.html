@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <% if (ENV_DEVELOPMENT) { %>
+    <script src="http://localhost:35729/livereload.js"></script>
+  <% } %>
+  <link rel="stylesheet" href="/css/subject.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="subject">
+    <div class="banner">
+      <img src="http://searchimg.b0.upaiyun.com/cateOptImg/logo/551476931179" alt="">
+    </div>
+    <div class="nav">
+      <span>购物车</span>
+      <ul>
+        <% for(let i = 0; i < 5; i++) { %>
+          <li><a href="#<%- i%>"><%- i %></a></li>
+        <% } %>
+      </ul>
+      <div class="backtop">返回顶部</div>
+    </div>
+    <div class="container">
+      <div class="timeline">
+        <% for(let i = 0; i < 5; i++) { %>
+          <div class="<%- i == 3 ? 'active' : '' %>"><%- i %></div>
+        <% } %>
+      </div>
+      <div class="main">
+        <% for(let i = 0; i < 5; i++) { %>
+          <div class="goods" id="<%- i %>">
+            <div class="title">
+              <img src="http://searchimg.b0.upaiyun.com/cateOptImg/logo/551476931179" alt="">
+            </div>
+            <div>
+              <% for(let i = 0; i < 23; i++) { %>
+                <div class="item">
+                  <img src="http://haitao.nosdn5.127.net/iqwccxsu69_800_800.jpg?imageView&type=webp&thumbnail=197x197&quality=85" alt="">
+                  <div class="name">哈哈哈哈哈哈哈哈哈啊啊哈哈哈哈哈哈哈牌包</div>
+                  <div class="price">原价： xxxx 现价： xxx</div>
+                  <a href="">立即购买</a>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+      </div>
+      <div class="tips">
+        xxxxxxxxxxxxxxx
+      </div>
+    </div>
+  </div>
+  <script src="/lib/jquery.min.js"></script>
+  <script type="text/javascript">
+    function backtop() {
+      $('.backtop').on('click', function() {
+        $('body, html').animate({scrollTop: 0}, 800);
+      });
+    }
+    backtop();
+  </script>
+</body>
+</html>

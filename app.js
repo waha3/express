@@ -7,6 +7,8 @@ const argv = require('yargs').argv;
 const models = glob.sync(config.root + '/app/models/*.js');
 const app = express();
 const db = mongoose.connection;
+// 引入babel
+require('babel-core/register');
 
 mongoose.connect(config.db);
 

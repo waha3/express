@@ -1,0 +1,137 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.subject {
+  width: 100%;
+  height: auto;
+}
+.subject .banner {
+  width: 100%;
+  height: 400px;
+}
+.subject .banner img {
+  width: 100%;
+  height: 100%;
+}
+.subject .nav {
+  width: 100px;
+  height: auto;
+  position: fixed;
+  top: 0;
+  right: 50px;
+  color: #fff;
+}
+.subject .nav span {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: pink;
+  display: block;
+}
+.subject .nav .backtop {
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  line-height: 30px;
+  background-color: red;
+}
+.subject .nav ul {
+  width: 100%;
+  height: auto;
+  list-style-type: none;
+}
+.subject .nav ul li {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: red;
+}
+.subject .nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.subject .container {
+  width: 1000px;
+  height: auto;
+  margin: auto;
+}
+.subject .container .timeline {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+.subject .container .timeline > div {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+}
+.subject .container .timeline .active {
+  background-color: red;
+}
+.subject .container .main {
+  width: 100%;
+  height: auto;
+}
+.subject .container .main .goods .title {
+  width: 100%;
+  height: 100px;
+}
+.subject .container .main .goods .title img {
+  width: 100%;
+  height: 100%;
+}
+.subject .container .main .goods > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.subject .container .main .goods > div:after {
+  content: "";
+  flex: auto;
+}
+.subject .container .main .goods .item {
+  width: 197px;
+  height: 314px;
+  background-color: teal;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 3px;
+}
+.subject .container .main .goods .item > img {
+  width: 100%;
+  height: 197px;
+}
+.subject .container .main .goods .item .name {
+  font-size: 14px;
+  padding: 4px;
+}
+.subject .container .main .goods .item .price {
+  text-align: center;
+  font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+  background-color: blue;
+}
+.subject .container .main .goods .item a {
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  font-size: 12px;
+  color: #333;
+  background-color: yellow;
+}
+.subject .container .tips {
+  width: 100%;
+  height: 290px;
+  margin-top: 20px;
+  background-color: #f0f0f0;
+}

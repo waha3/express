@@ -2,7 +2,11 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
-  less = require('gulp-less');
+  less = require('gulp-less'),
+  babel = require('gulp-babel'),
+  Cache = require('gulp-file-cache');
+
+var cache = new Cache();
 
 gulp.task('less', function () {
   gulp.src('./public/less/*.less')
@@ -15,6 +19,17 @@ gulp.task('less', function () {
 gulp.task('watch', function() {
   gulp.watch('./public/less/*.less', ['less']);
 });
+
+// gulp.task('compile', function() {
+//   var stream = gulp.src('./app/**/*.js') // your ES2015 code
+//                    .pipe(cache.filter()) // remember files
+//                    .pipe(babel({
+//                      "presets": ["stage-3"]
+//                    })) // compile new ones
+//                    .pipe(cache.cache()) // cache them
+//                   //  .pipe(gulp.dest('./dist')) // write them
+//   return stream
+// });
 
 gulp.task('develop', function () {
   livereload.listen();

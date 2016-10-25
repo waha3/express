@@ -3,15 +3,7 @@ const home = require('../app/controllers/home.js');
 const user = require('../app/controllers/user.js');
 const posts = require('../app/controllers/posts.js');
 
-module.exports = (app) => {
-  // 登录验证中间件
-  // app.use((req, res, next) => {
-  //   res.render('header', {
-  //     user: req.session.user
-  //   });
-  //   next();
-  // });
-
+module.exports = (app, passport) => {
   app.get('/', home.home);
   app.get('/movies/:id', home.movies);
 
@@ -60,6 +52,13 @@ module.exports = (app) => {
       success: req.flash('success'),
       user: req.session.user
     });
+  });
+
+  app.get('/auth/github', passport.authenticate('github'));
+  app.get('/auth/github/callback', passport.authenticate('github', {
+    failureRedirect: '/login'
+  }), function(req, res) {
+    res.redirect('/');
   });
 
   // 错误处理

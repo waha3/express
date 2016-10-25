@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const argv = require('yargs').argv;
 const models = glob.sync(config.root + '/app/models/*.js');
 const app = express();
+const passport = require('passport');
 const db = mongoose.connection;
 // 引入babel
 require('babel-core/register');
@@ -17,8 +18,9 @@ db.on('error', () => {
 });
 
 models.forEach(model => require(model));
-require('./config/express')(app, config);
-require('./config/route')(app);
+require('./config/passport')(passport);
+require('./config/express')(app, config, passport);
+require('./config/route')(app, passport);
 
 if (argv.s) { // -s 爬虫
   require('./app/spider/index.js');

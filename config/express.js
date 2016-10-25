@@ -11,7 +11,7 @@ const mongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const env = process.env.NODE_ENV || 'development';
 
-module.exports = (app, config) => {
+module.exports = (app, config, passport) => {
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env === 'development';
 
@@ -19,7 +19,7 @@ module.exports = (app, config) => {
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');
 
-  app.use(flash());
+
   app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
@@ -38,7 +38,14 @@ module.exports = (app, config) => {
         collection: 'sessions'
       })
   }));
-  app.use(compress());
+  app.use(flash());
+  app.use(compress({
+    threshold: 512
+  }));
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
+
+  //  use passport session
+  app.use(passport.initialize());
+  app.use(passport.session());
 };

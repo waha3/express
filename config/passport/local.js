@@ -11,6 +11,7 @@ module.exports = new LocalStrategy({
       if (err) return done(err);
       if (!user) return done(null, false);
       if (user.hashed_password === user.encryptPassword(password)) {
+        console.log('here');
         return done(null, user);
       } else {
         return done(null, false);

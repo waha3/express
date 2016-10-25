@@ -7,6 +7,9 @@ const UserSchema = new Schema({
   salt: { type: String, default: '' },
   hased_password: { type: String, default: '' },
   email: { type: String, default: '' },
+  provider: { type: String, default: '' },
+  authToken: { type: String, default: '' },
+  github: {},
   mobile: { type: String, default: '' },
   meta: {
     createAt: { type: Date, default: Date.now },

@@ -54,17 +54,13 @@ module.exports = (app, passport) => {
     });
   });
 
-  app.post('/local',
-  passport.authenticate('local',
-    { successRedirect: '/', failureRedirect: '/login' }
-  ));
-
-  // app.get('/auth/github', passport.authenticate('github'));
-  // app.get('/auth/github/callback', passport.authenticate('github', {
-  //   failureRedirect: '/login'
-  // }), function(req, res) {
-  //   res.redirect('/');
-  // });
+  // OAuth route
+  app.get('/auth/github', passport.authenticate('github'));
+  app.get('/auth/github/callback', passport.authenticate('github', {
+    failureRedirect: '/login'
+  }), function(req, res) {
+    res.redirect('/');
+  });
 
   // 错误处理
   app.use((req, res, next) => {

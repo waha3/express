@@ -8,8 +8,6 @@ const models = glob.sync(config.root + '/app/models/*.js');
 const app = express();
 const passport = require('passport');
 const db = mongoose.connection;
-// 引入babel
-require('babel-core/register');
 
 mongoose.connect(config.db);
 
@@ -18,7 +16,7 @@ db.on('error', () => {
 });
 
 models.forEach(model => require(model));
-require('./config/passport')(passport);
+require('./config/passport.js')(passport);
 require('./config/express')(app, config, passport);
 require('./config/route')(app, passport);
 

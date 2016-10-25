@@ -1,6 +1,6 @@
 <% include header.html %>
   <div class="row">
-    <form class="col s12" method="POST">
+    <form class="col s12" method="POST" action="/local">
       <div class="row">
         <div class="input-field col s12">
           <input name="name" id="name" type="text" class="validate">
@@ -13,8 +13,15 @@
           <label for="password">密码</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input name="email" id="email" type="email" class="validate">
+          <label for="email">邮箱</label>
+        </div>
+      </div>
       <button class="waves-effect waves-light btn right" type="submit">登录</button>
       <a class="waves-effect waves-light btn right" style="margin-right: 10px;" href="/auth/github">github登录</a>
+      <!-- <a class="waves-effect waves-light btn right" style="margin-right: 10px;" href="/local">local</a> -->
     </form>
   </div>
 <% include footer.html %>

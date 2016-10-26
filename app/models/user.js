@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: { type: String, unique: true, required: true },
   salt: { type: String, default: '' },
-  hased_password: { type: String, default: '' },
-  email: { type: String, default: '' },
+  hashed_password: { type: String, default: '' },
+  email: { type: String, unique: true, required: true },
   provider: { type: String, default: '' },
   authToken: { type: String, default: '' },
   github: {},
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
 
 UserSchema.methods = {
   checkPassword: function(plainPassword) {
-    return this.encryptPassword(plainPassword) === this.hased_password;
+    return this.encryptPassword(plainPassword) === this.hashed_password;
   },
 
   makeSalt: function() {
@@ -45,7 +45,7 @@ UserSchema.virtual('password')
   .set(function(password) {
     this._password = password;
     this.salt = this.makeSalt();
-    this.hased_password = this.encryptPassword(password);
+    this.hashed_password = this.encryptPassword(password);
   }).get(function() {
     return this._password;
   });
@@ -60,8 +60,8 @@ UserSchema.path('email').validate(function(email) {
   return email.length;
 }, 'Email cannot be blank');
 
-UserSchema.path('hased_password').validate(function(hasedPassword) {
-  return hasedPassword.length && this._password.length;
+UserSchema.path('hashed_password').validate(function(hashedPassword) {
+  return hashedPassword.length && this._password.length;
 }, 'Password cannot be blank');
 
 

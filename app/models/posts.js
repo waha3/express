@@ -12,8 +12,8 @@ const PostSchema = new Schema({
 });
 
 PostSchema.statics = {
-  fetchPost: function(id, cb) {
-    this.findById({_id: id})
+  fetchPost: function(cb) {
+    this.find({})
       .exec(cb);
   }
 };

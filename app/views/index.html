@@ -3,11 +3,11 @@
   <div>
     <div class="row">
       <% movies.forEach(function(i){ %>
-      <div class="items">
+      <div class="col s3">
         <div class="card hoverable">
           <a href="/movies/<%- i._id%>">
             <div class="card-image">
-              <img class="responsive-img" src="<%- i.poster %>">
+              <img class="responsive-img valign-wrapper" src="<%- i.poster %>">
               <span class="card-title"><%-i.movieName %></span>
             </div>
           </a>

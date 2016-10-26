@@ -32,7 +32,7 @@ exports.login = async(function * (req, res) {
         return res.redirect('/login');
       }
       const _password = user.encryptPassword(req.body.password);
-      if (_password === user.hased_password) {
+      if (_password === user.hashed_password) {
         req.session.user = user;
         req.flash('success', '登录成功');
       }
@@ -41,5 +41,21 @@ exports.login = async(function * (req, res) {
   } catch (err) {
     req.flash('error', err);
     global.console.log(err);
+  }
+});
+
+exports.userInfo = async(function* (req, res, next) {
+  try {
+    User.findById(req.params.id)
+        .exec((err, user) => {
+          if (err) return next(err);
+          res.render('user', {
+            success: req.flash('success'),
+            error: req.flash('error'),
+            user
+          });
+        });
+  } catch (e) {
+    global.console.log(e);
   }
 });

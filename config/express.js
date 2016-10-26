@@ -2,7 +2,7 @@ const express = require('express');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const compress = require('compression');
 const methodOverride = require('method-override');
@@ -26,8 +26,10 @@ module.exports = (app, config, passport) => {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+  app.use(express.static(config.root + '/public'));
+  app.use(methodOverride());
   app.use(cookieParser());
-  app.use(cookieSession({ secret: 'secret' }));
+  // app.use(cookieSession({ secret: 'secret' }));
   app.use(session({
       secret: 'my_project',
       resave: false,
@@ -42,8 +44,6 @@ module.exports = (app, config, passport) => {
   app.use(compress({
     threshold: 512
   }));
-  app.use(express.static(config.root + '/public'));
-  app.use(methodOverride());
 
   //  use passport session
   app.use(passport.initialize());

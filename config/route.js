@@ -23,7 +23,13 @@ module.exports = (app, passport) => {
       user: req.session.user
     });
   });
-  app.post('/login', user.login);
+
+  app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    (req, res) => {
+      res.redirect('/');
+  });
+
   app.get('/loginout', (req, res) => {
     delete req.session.user;
     res.redirect('/');
@@ -38,13 +44,7 @@ module.exports = (app, passport) => {
   });
   app.post('/post', posts.create);
   app.get('/post/:id', posts.fetchPost);
-  app.get('/list', (req, res) => {
-    res.render('list', {
-      error: req.flash('error'),
-      success: req.flash('success'),
-      user: req.session.user
-    });
-  });
+  app.get('/list', posts.fetchPost);
 
   app.get('/subject', (req, res) => {
     res.render('subject', {
@@ -53,6 +53,8 @@ module.exports = (app, passport) => {
       user: req.session.user
     });
   });
+
+  app.get('/user/:id', user.userInfo);
 
   // OAuth route
   app.get('/auth/github', passport.authenticate('github'));

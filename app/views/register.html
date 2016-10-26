@@ -1,6 +1,4 @@
 <% include header.html %>
-  <%- success %>
-  <%- error %>
   <div class="row">
     <form class="col s12" method="POST">
       <div class="row">
@@ -37,3 +35,14 @@
     </form>
   </div>
 <% include footer.html %>
+<script type="text/javascript">
+  var success = '<%- success %>';
+  var error = '<%- error %>';
+  if (success) {
+    notie.alert(1, 'Success!', 1);
+  }
+  if (error) {
+    notie.alert(2, 'Success!', 1);
+  }
+
+</script>

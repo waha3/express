@@ -1,8 +1,11 @@
 <% include header.html %>
   <%- success %>
   <%- error %>
-  <div class="acticle">
-    <%- post.title %>
-    <%- post.content %>
-  </div>
+  <% post.map(val => { %>
+    <div class="acticle">
+      <div class="title"><%- val.title %></div>
+      <div class="author"><%- val.author.loginname %></div>
+      <div class="content"><%- val.content %></div>
+    </div>
+  <% }) %>
 <% include footer.html %>

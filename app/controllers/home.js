@@ -4,8 +4,9 @@ const Movie = mongoose.model('Movie');
 const { wrap: async } = require('co');
 mongoose.Promise = Promise;
 
-exports.home = async(function* (req, res) {
+exports.home = async(function* (req, res, next) {
   const user = req.session.user;
+  console.log(req.session);
   try {
     Movie.fetch((err, movies) => {
       if (err) return next(err);

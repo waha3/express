@@ -1,6 +1,7 @@
 'use strict';
 const https = require('https');
 const cheerio = require('cheerio');
+const chalk = require('chalk');
 const { wrap: async } = require('co');
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
@@ -63,4 +64,5 @@ asyncRequest(true).then(() => {
       if (err) window.console.error(err);
     });
   }
+  global.console.log('%s success', chalk.red('√'));
 }).catch(err => window.console.error(err));

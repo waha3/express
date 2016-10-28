@@ -3,6 +3,7 @@ const Movie = mongoose.model('Movie');
 const { wrap: async } = require('co');
 const request = require('request');
 const cheerio = require('cheerio');
+const chalk = require('chalk');
 mongoose.Promise = Promise;
 
 const fetchDetail = async(function* () {
@@ -79,7 +80,7 @@ function fetchUrl(url) {
 }
 
 function updateInfo(data) {
-  Movie.updateMovieInfo(data);
+  Movie.updateMovieInfo(data, () => global.console.log('%s success', chalk.red('√')));
 }
 
 fetchDetail(true)

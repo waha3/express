@@ -1,16 +1,24 @@
-'use strict';
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: { type: String, unique: true, required: true },
-  salt: { type: String, default: '' },
-  hashed_password: { type: String, default: '' },
+  salt: { type: String },
+  hashed_password: { type: String },
   email: { type: String, unique: true, required: true },
+  mobile: { type: String },
+
   provider: { type: String, default: '' },
   authToken: { type: String, default: '' },
   github: {},
-  mobile: { type: String, default: '' },
+
+  profile: {
+    name: { type: String },
+    avator: { type: String },
+    gender: { type: String },
+    location: { type: String }
+  },
+
   meta: {
     createAt: { type: Date, default: Date.now },
     updateAt: { type: Date, default: Date.now }

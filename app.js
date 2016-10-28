@@ -8,8 +8,11 @@ const models = glob.sync(config.root + '/app/models/*.js');
 const app = express();
 const passport = require('passport');
 const db = mongoose.connection;
+const chalk = require('chalk');
 
-mongoose.connect(config.db);
+mongoose.connect(config.db, () => {
+  global.console.log('%s mongodb is connect successfully', chalk.green('✓'));
+});
 
 db.on('error', () => {
   throw new Error('unable to connect to database at ' + config.db);
@@ -28,4 +31,4 @@ if (argv.d) {
   require('./app/spider/detail.js');
 }
 
-app.listen(config.port, () => global.console.log('Express server listening on port ' + config.port));
+app.listen(config.port, () => global.console.log('%s Express server listening on %d port', chalk.green('✓'), config.port));

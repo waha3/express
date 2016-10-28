@@ -2,26 +2,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const MovieSchema = new Schema({
-  poster: { type: String, default: '' },
-  movieName: { type: String, default: '' },
-  director: { type: Array, default: [] },
-  actors: { type: Array, default: [] },
-  point: { type: Number, default: null },
-  tips: { type: String, default: '' },
-  url: { type: String, default: '' },
-  summary: { type: String, default: '' },
+  poster: { type: String },
+  movieName: { type: String },
+  director: { type: Array },
+  actors: { type: Array },
+  point: { type: Number },
+  tips: { type: String },
+  url: { type: String },
+  summary: { type: String },
   comments: [{
-    title: { type: String, default: '' },
-    url: { type: String, default: '' },
-    content: { type: String, default: '' },
+    title: { type: String },
+    url: { type: String },
+    content: { type: String },
     author: {
-      loginname: { type: String, default: '' },
-      url: { type: String, default: '' },
-      avator: { type: String, default: '' }
+      loginname: { type: String },
+      url: { type: String },
+      avator: { type: String }
     }
   }],
   meta: {
-    createAt: { type: Date, default: Date.now }
+    createAt: { type: Date }
   }
 });
 
@@ -42,7 +42,7 @@ MovieSchema.statics = {
       .exec(cb);
   },
 
-  updateMovieInfo: function(data) {
+  updateMovieInfo: function(data, cb) {
     this.where({url: data.url}).update({$set: {
       poster: data.poster,
       director: data.director,
@@ -51,7 +51,7 @@ MovieSchema.statics = {
       comments: [
         ...data.comments
       ]
-    }}).exec();
+    }}).exec(cb);
   }
 };
 

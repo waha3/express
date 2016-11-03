@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script type="text/javascript" src="//cdn.bootcss.com/vue/2.0.3/vue.min.js"></script>
+  <link rel="stylesheet" href="http://localhost:9000/css/cart.css">
+</head>
+<body>
+  <div id="cart">
+
+    <div class="store" v-for="(v, i) in carts">
+      <div class="top">
+        <div class="label"></div>
+        <div><i><img src="" alt=""></i>{{v.storeName}}</div>
+      </div>
+      <div class="main">
+
+        <div class="list" v-for="(value, index) in v.cartList">
+          <div class="tips" v-if="v.tips">
+            <button>满减</button>
+            <span>满200元免运费</span>
+            <a href="#">去凑单<i></i></a>
+          </div>
+          <div class="label"></div>
+          <div class="avator"><img :src="value.image" alt=""></div>
+          <div class="content">
+            <div>
+              <span class="name">{{value.name}}</span>
+              <span class="price">￥{{value.price}}</span>
+            </div>
+            <div>颜色： {{value.color}}</div>
+            <div>尺码： {{value.size}}</div>
+          </div>
+        </div>
+        <button>清空失效产品</button>
+      </div>
+
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    var cart = new Vue({
+      el: '#cart',
+      data: {
+        carts: [
+          {
+            storeName: 'xxx官网',
+            tips: true,
+            cartList: [
+              {
+                name: 'xxxx斜挎包',
+                price: '1000',
+                color: '绿色',
+                size: '11-D',
+                nums: 2,
+                isStock: false,
+                image: 'http://st-prod.b0.upaiyun.com/prodimage/62cebcb25994394c.jpg!productmain'
+              }
+            ]
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>

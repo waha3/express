@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: 400 .7rem/1.4rem "Helvetica Neue", Helvetica, Tahoma;
+}
+
+
+@borderColor: #f0f0f0;
+@buttonColor: #ffcc40;
+@radius: 4px;
+
+#cart {
+  // background-color: #f0f0f0;
+}
+
+.store {
+  width: 100%;
+  height: auto;
+  .top {
+    height: 3rem;
+    display: flex;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid @borderColor;
+    > div {
+      line-height: 3rem;
+    }
+    > div:first-child {
+      margin-right: 10px;
+      justify-content: center;
+      align-self: center;
+    }
+  }
+
+  .list {
+    .tips {
+      button {
+        width: 3.4rem;
+        height: 2.35rem;
+        border: none;
+        background-color: @buttonColor;
+        color: #fff;
+        border-radius: @radius;
+        float: left;
+      }
+      span {
+        float: left;
+      }
+      a {
+        float: right;
+        text-decoration: none;
+        i {
+
+        }
+      }
+    }
+
+  }
+}
+
+
+.label {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid #f0f0f0;
+  margin-left: 40px;
+}

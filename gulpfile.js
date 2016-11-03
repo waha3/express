@@ -14,6 +14,9 @@ gulp.task('less', function () {
 
 gulp.task('watch', function() {
   gulp.watch('./public/less/*.less', ['less']);
+  gulp.watch('./app/views/**/*.html', function() {
+    livereload.reload();
+  });
 });
 
 gulp.task('develop', function () {

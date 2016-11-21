@@ -58,6 +58,7 @@ module.exports = (app, passport) => {
 
   // 公司项目
   app.get('/project/cart', (req, res) => res.render('project/cart'));
+  app.get('/project/order', (req, res) => res.render('project/confirm_order'));
 
   // 错误处理
   app.use((req, res, next) => {

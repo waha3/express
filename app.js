@@ -11,7 +11,7 @@ const db = mongoose.connection;
 const chalk = require('chalk');
 
 mongoose.connect(config.db, () => {
-  global.console.log('%s mongodb is connect successfully', chalk.green('✓'));
+  global.console.log('%s mongodb is connect successfully', chalk.yellow('✓'));
 });
 
 db.on('error', () => {
